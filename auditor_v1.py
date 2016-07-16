@@ -1,10 +1,17 @@
 #!/usr/bin/env python
+#############################################################################################
+# Script para ayudar a organizar los datos de una auditoria de hacking                      #
+# Autor:Fuegan                                                                              #
+# email: albertogasco@gmail.com                                                             #
+#############################################################################################
+
 # -*- coding: utf-8 -*-
 
 import os
 import time
 #import nmap
 
+#Declaracion de variables globales
 ruta=str(os.environ["HOME"]+str("/Auditoria/"))
 
 #Creacion de carpetas donde contener la informacion
@@ -92,7 +99,8 @@ def Bitacora():
 	nano = "nano " + str(archivo)
 	os.system(nano)
 	Menu()
-
+	
+#Menu inicial de la aplicacion
 def Menu():
 	os.system('clear') 
 	print ("Bienvenido al creador de estructuras de carpetas para auditoria v 0.2")
