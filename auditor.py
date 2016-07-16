@@ -1,3 +1,44 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import time
+#import nmap
+
+ruta=str(os.environ["HOME"]+str("/Auditoria/"))
+
+#Creacion de carpetas donde contener la informacion
+def Auditoria():
+	texto="Seleccione la empresa que deseas auditar:\n"
+	empresa, auditor = Empresa(texto)
+	ruta=os.environ["HOME"]+str("/Auditoria/")+ empresa
+	NuevaCarpeta(ruta+"/imagenes_videos/Escaneo")
+	NuevaCarpeta(ruta+"/imagenes_videos/Reconocimiento")
+	NuevaCarpeta(ruta+"/imagenes_videos/Analisis_vulnerabilidades")
+	NuevaCarpeta(ruta+"/imagenes_videos/Explotacion")
+	NuevaCarpeta(ruta+"/Reporte_aplicaciones")
+	NuevaCarpeta(ruta+"/Data")
+	archivo=str(ruta)+str('/bitacora.txt')
+	comprobacion = os.path.exists(archivo)
+	if comprobacion == False:
+		contenido =('Auditoria:\n\nEmpresa: '+ str(empresa) + '\nAuditor asignado: '+ auditor +  '\n' + "Fecha de comienzo. ------- " + str(time.strftime('%y %b %d') + " - " + time.strftime('%H:%M')))
+	else:
+		contenido = "\nFecha de comienzo" + str(time.strftime('%y %b %d') + " - " + time.strftime('%H:%M'))
+	NuevoArchivo(archivo,contenido)
+	Menu()
+
+#Funcion para comprobar existencia de archivo y si no crearlo
+def NuevoArchivo(pathcompleto, contenido):
+	archivo = os.path.exists(pathcompleto)
+	if archivo == True:
+		historico=open( pathcompleto , 'a')
+		historico.write(contenido + "\n")
+		historico.close()
+	else:
+		historico=open(pathcompleto, 'w')
+		historico.write(contenido + "\n")
+		historico.close()
+	
 
 #Funcion para comprobar existencia de carpeta y si no existe crearla 
 def NuevaCarpeta (path):
